@@ -10,6 +10,8 @@ import {
     Image
 } from '@shoutem/ui';
 
+import schemes from '../constants/Schemes';
+
 const details1 = {
     name: 'Elon Musk',
     profileImage:
@@ -17,17 +19,29 @@ const details1 = {
     followers: '30,245'
 };
 
+const details2 = {
+    name: 'Neil D. Tyson',
+    profileImage:
+        'https://pbs.twimg.com/profile_images/74188698/NeilTysonOriginsA-Crop.jpg',
+    followers: '45,673'
+};
+
 export class Community extends Component {
     render() {
+        const { navigation } = this.props;
+        const scheme1 = schemes[0];
         return (
             <View style={{ marginTop: 20 }}>
-                <Heading style={{ margin: 20, textAlign: 'center' }}>
-                    Community
-                </Heading>
-                <Title styleName="md-gutter-bottom">
-                    Fellow Entrepreneurs like you
-                </Title>
                 <ScrollView>
+                    <Heading style={{ margin: 20, textAlign: 'center' }}>
+                        Community
+                    </Heading>
+                    <Title
+                        styleName="md-gutter-bottom"
+                        style={{ marginLeft: 10 }}
+                    >
+                        Follow other Entrepreneurs like you
+                    </Title>
                     <View
                         style={{
                             height: 200,
@@ -36,16 +50,76 @@ export class Community extends Component {
                         }}
                     >
                         <Prof details={details1} />
-                        <Prof details={details1} />
+                        <Prof details={details2} />
                     </View>
-                    <View>
-                        <Text>Activity</Text>
+                    <View style={{ height: 1200 }}>
+                        <Title
+                            styleName="md-gutter-top"
+                            style={{ marginLeft: 10 }}
+                        >
+                            Activity
+                        </Title>
+                        <View style={{ marginTop: 10 }}>
+                            <Subtitle style={{ marginLeft: 20, color: 'gray' }}>
+                                People who you follow are interested in
+                            </Subtitle>
+                            <Scheme
+                                scheme={scheme1}
+                                onPress={() =>
+                                    navigation.navigate('SchemeProfile', {
+                                        scheme: scheme1
+                                    })
+                                }
+                            />
+                        </View>
+                        <Title
+                            styleName="md-gutter-top"
+                            style={{ marginLeft: 10 }}
+                        >
+                            Articles
+                        </Title>
+                        <View style={{ height: 500, marginTop: 10 }}>
+                            <Subtitle style={{ marginLeft: 20, color: 'gray' }}>
+                                Based on your location and interests
+                            </Subtitle>
+                            <Scheme
+                                scheme={schemeb}
+                                onPress={() =>
+                                    navigation.navigate('SchemeProfile', {
+                                        scheme: schemeb
+                                    })
+                                }
+                            />
+                            <Scheme
+                                scheme={schemec}
+                                onPress={() =>
+                                    navigation.navigate('SchemeProfile', {
+                                        scheme: schemeb
+                                    })
+                                }
+                            />
+                        </View>
                     </View>
                 </ScrollView>
             </View>
         );
     }
 }
+
+const schemeb = {
+    name: 'How does Brexit affect business funding?',
+    coverImage:
+        'https://images.unsplash.com/photo-1547661533-69ef56d742f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60',
+    location: 'United Kingdom'
+};
+
+const schemec = {
+    name:
+        'Scottish universities unite to provide funding Opportunites for entrepreneurs',
+    coverImage:
+        'https://images.unsplash.com/photo-1522173043602-c9fe6047c3e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60',
+    location: 'United Kingdom'
+};
 
 const Prof = ({ details }) => {
     const imageSize = 100;
@@ -72,18 +146,31 @@ const Prof = ({ details }) => {
                     uri: details.profileImage
                 }}
             />
-            <Title style={{ fontSize: 15 }}>{details.name}</Title>
+            <Title style={{ fontSize: 15, marginTop: 5 }}>{details.name}</Title>
             <Caption>{details.followers} followers</Caption>
         </TouchableOpacity>
     );
 };
 
-const Scheme = ({ scheme }) => {
-    return (
-        <View>
-            <Text>{scheme.name}</Text>
+const Scheme = ({ scheme, onPress }) => (
+    <TouchableOpacity
+        onPress={onPress}
+        style={{
+            margin: 20,
+            borderWidth: 0.5,
+            borderColor: 'rgba(0,0,0,0.1)',
+            borderRadius: 5
+        }}
+    >
+        <Image
+            style={{ height: 150, width: '100%' }}
+            source={{ uri: scheme.coverImage }}
+        />
+        <View style={{ padding: 10 }}>
+            <Subtitle style={{ fontSize: 20 }}>{scheme.name}</Subtitle>
+            <Caption style={{ fontSize: 15 }}>{scheme.location}</Caption>
         </View>
-    );
-};
+    </TouchableOpacity>
+);
 
 export default Community;

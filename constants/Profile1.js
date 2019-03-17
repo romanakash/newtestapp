@@ -10,7 +10,7 @@ const profile1 = {
         "This is a long piece of text that tells more about me. Don't mind me just filling up the space. I hate cliffhangers....",
     pitch:
         'This is the part where I write a short description about my business. The pitch should be kept simple as possible. For more pitches...',
-    interests: ['Agriculture', 'Business'],
+    interests: ['Cinema', 'Theatre'],
     experience: {
         position: 'Actor',
         company: 'Holywood',

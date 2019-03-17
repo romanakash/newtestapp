@@ -12,16 +12,16 @@ export class Home extends Component {
                 <View
                     style={{ justifyContent: 'center', alignContent: 'center' }}
                 >
-                    <View
-                        style={{
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            padding: 20
-                        }}
-                    >
-                        <Heading styleName="bold">Home</Heading>
-                    </View>
                     <ScrollView>
+                        <View
+                            style={{
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                padding: 20
+                            }}
+                        >
+                            <Heading>Home</Heading>
+                        </View>
                         {schemes.map(s => (
                             <SchemeCard
                                 key={s.name}

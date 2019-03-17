@@ -56,7 +56,7 @@ export default createBottomTabNavigator(
         }
     },
     {
-        initialRouteName: 'Community',
+        initialRouteName: 'Docs',
         tabBarOptions: {
             activeTintColor: 'black',
             showIcon: true,

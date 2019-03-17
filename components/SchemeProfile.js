@@ -7,13 +7,9 @@ import schemes from '../constants/Schemes';
 
 export class SchemeProfile extends Component {
     render() {
-        let scheme;
         const { navigation } = this.props;
-        if (navigation.params) {
-            scheme = this.props.navigation.params.scheme;
-        } else {
-            scheme = schemes[0];
-        }
+        const scheme = this.props.navigation.getParam('scheme', schemes[0]);
+
         return (
             <View style={{ flex: 1, marginTop: 20 }}>
                 <ScrollView style={{ flex: 0.9 }}>
