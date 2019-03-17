@@ -1,11 +1,35 @@
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import React, { Component, useState } from 'react';
+import { Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { SearchBar } from 'react-native-elements';
 
-export class Search extends Component {
+import { Ionicons } from '@expo/vector-icons';
+
+class Search extends Component {
+    state = {
+        searchTerm: ''
+    };
+
+    updateSearch = txt => {
+        this.setState({ searchTerm: txt });
+    };
+
+    onSubmit = () => {};
+
     render() {
         return (
-            <View>
-                <Text> textInComponent </Text>
+            <View style={{ marginTop: 20 }}>
+                <View style={{ margin: 10 }}>
+                    <SearchBar
+                        platform="android"
+                        placeholder="Search for schemes..."
+                        value={this.state.searchTerm}
+                        onChangeText={this.updateSearch}
+                        onSubmitEditing={this.onSubmit}
+                        style={{ fontSize: 30 }}
+                        icon={{ name: 'search' }}
+                        clearIcon={{ name: 'close' }}
+                    />
+                </View>
             </View>
         );
     }
